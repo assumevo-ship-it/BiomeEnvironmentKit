@@ -18,9 +18,17 @@ A complete, realistic outdoor environment for UE5, in one plugin:
   climate, rocks and cliffs, buildings, docks, a medieval town and castle, props) with per-biome scatter lists.
   ([Docs/Assets.md](Docs/Assets.md))
 
-![Biomes](Docs/Images/gallery.jpg)
+## Visual showcase
 
-![Sky and ocean](Docs/Images/environment.jpg)
+See the [image gallery](Showcase/README.md) for Unreal captures of the island materials, volumetric clouds, ocean shoreline, aurora sky and asset library.
+
+| Tropical island | Clouds and weather |
+|---|---|
+| ![Tropical island terrain](Showcase/Images/island-overview.jpg) | ![Volumetric clouds over the island](Showcase/Images/overcast-clouds.jpg) |
+
+| Ocean shoreline | Night sky and aurora |
+|---|---|
+| ![Ocean shoreline](Showcase/Images/ocean-shore.jpg) | ![Aurora and stars](Showcase/Images/aurora-night.jpg) |
 
 **Everything is free to use, change and ship, commercially too.** Code, shaders and tools are MIT. Photographic
 textures and scanned assets are CC0 (Poly Haven, ambientCG); the moon and Milky Way maps are NASA imagery (public
@@ -137,8 +145,38 @@ UnrealEditor-Cmd.exe <Project>.uproject -ExecutePythonScript="<Project>/Plugins/
 | `Tools/marine/marine_life.py`, `marine_fauna.py` | Generate the 104 sea creatures and plants (numpy only) into `Build/Marine`. |
 | `Tools/marine/build_marine_assets.py` | Runs in the editor. Builds `M_SeaLife`, `M_SeaCreature`, `M_SeaJelly` and imports the marine meshes into `/BiomeAutoMaterials/Marine`. |
 | `Tools/assets/review_assets.py` | Runs in the editor. Photographs every imported asset and creature, 12 to a frame, for review. |
-| `Tools/asseMethodInvocationException: 
-Line |
-   2 |  … IO.File]::ReadAllText($p); [Console]::Write($s.Substring(10000,2382))
-     |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-     | Exception calling "Substring" with "2" argument(s): "Index and length must refer to a location within the string. (Parameter 'length')"
+| `Tools/assets/import_assets.py` | Runs in the editor. Imports the island assets (Nanite, collision) into `/BiomeAutoMaterials/Assets`. |
+| `Tools/assets/scatter_biome.py` | Runs in the editor. Scatters a biome's trees, plants and rocks over the open level's landscape. |
+| `Tools/run_many.py` | Runs several of the editor scripts in one session (`BAM_RUN=a.py,b.py`). |
+| `Tools/package_release.py` | Zips the built plugin (and the island assets separately) for a GitHub release. |
+
+### Adding a biome
+
+Add an entry to `BIOMES` in `Tools/biomes.py`. It maps slots to texture keys, plus parameter overrides and tints.
+If it needs a new texture, add it to `TEXTURES` with its Poly Haven (`ph:<id>`) or ambientCG (`acg:<id>`) source and
+a target albedo. Then rerun `fetch_textures.py` and `build_materials.py`.
+
+## Performance notes
+
+- Pixel cost depends on how many layers overlap. Flat ground or bare cliff costs 1–2 layers. A snowy talus edge can
+  reach 5.
+- Hex-tiling triples the ground texture reads. To trade quality for speed, set `Hex Tiling` to 0 or use material
+  quality Low.
+- 2K textures in BC7 take about 5.3 MB each, including mips. A biome uses 16, and textures shared between biomes
+  are stored once.
+
+## Requirements
+
+- Unreal Engine 5.x. The release assets are saved with the engine named in the zip. Building from source works on any
+  UE5 with the Python Editor Script Plugin.
+- Lumen and Nanite aren't required for the biome materials (they write a world-space normal). The island assets are
+  Nanite meshes, and the sky and ocean are tuned for Lumen, Virtual Shadow Maps and the default (non-physical) light units.
+- The `BiomeSky` and `BiomeOcean` C++ modules depend only on Core, CoreUObject, Engine, RenderCore, RHI and the mesh
+  description modules. Prebuilt binaries are Win64; other platforms compile them from `Source/`.
+
+## License
+
+Code, HLSL, material graphs and tools: MIT ([LICENSE](LICENSE)). Textures and scanned assets: CC0, from Poly Haven and
+ambientCG ([CREDITS.md](CREDITS.md), [Docs/AssetCredits.md](Docs/AssetCredits.md)). The kit's own generated island
+assets: CC0. Moon and Milky Way maps: NASA (public domain; credit NASA SVS and ESA/Gaia/DPAC, see [Docs/Sky.md](Docs/Sky.md)).
+The cloud shapes use the engine's own volume noise textures, referenced from `/Engine`, not redistributed.
