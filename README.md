@@ -20,15 +20,23 @@ A complete, realistic outdoor environment for UE5, in one plugin:
 
 ## Visual showcase
 
-See the [image gallery](Showcase/README.md) for Unreal captures of the island materials, volumetric clouds, ocean shoreline, aurora sky and asset library.
+Browse the [full image gallery](Showcase/README.md) for verified Unreal captures of the island terrain, tropical materials, clouds, Milky Way night sky, aurora, ocean and asset library.
 
-| Tropical island | Clouds and weather |
+| Island terrain | Rainforest biome |
 |---|---|
-| ![Tropical island terrain](Showcase/Images/island-overview.jpg) | ![Volumetric clouds over the island](Showcase/Images/overcast-clouds.jpg) |
+| ![Tropical island terrain](Showcase/Images/island-overview.jpg) | ![Rainforest island terrain](Showcase/Images/rainforest-island.jpg) |
 
-| Ocean shoreline | Night sky and aurora |
+| Volumetric clouds | Milky Way night sky |
 |---|---|
-| ![Ocean shoreline](Showcase/Images/ocean-shore.jpg) | ![Aurora and stars](Showcase/Images/aurora-night.jpg) |
+| ![Cloud cover above the island](Showcase/Images/overcast-clouds.jpg) | ![Stars and the Milky Way](Showcase/Images/night-sky.jpg) |
+
+| Ocean shoreline | Stormy sea |
+|---|---|
+| ![Ocean meeting the island shore](Showcase/Images/ocean-shore.jpg) | ![Stormy ocean](Showcase/Images/storm-sea.jpg) |
+
+| Terrain material close-up | Island assets |
+|---|---|
+| ![Close-up of terrain material layers](Showcase/Images/shore-material-detail.jpg) | ![Selection of island assets](Showcase/Images/island-assets.jpg) |
 
 **Everything is free to use, change and ship, commercially too.** Code, shaders and tools are MIT. Photographic
 textures and scanned assets are CC0 (Poly Haven, ambientCG); the moon and Milky Way maps are NASA imagery (public
