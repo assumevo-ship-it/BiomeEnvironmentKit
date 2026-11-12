@@ -1,0 +1,17 @@
+# downloads and intermediates (recreated by Tools/fetch_textures.py)
+.cache/
+Build/
+Release/
+# built Unreal content: shipped as a release zip, rebuilt by Tools/build_materials.py
+Content/
+Docs/Images/raw/
+Intermediate/
+Saved/
+__pycache__/
+*.pyc
+Showcase/*.r16
+Showcase/*_preview.png
+
+Binaries/
+Tools/dev_*.ps1
+Tools/dev_*.bat

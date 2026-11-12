@@ -1,0 +1,29 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0.0",
+	"FriendlyName": "Biome Environment Kit",
+	"Description": "Realistic island environments for UE5: 23 calibrated biome auto-materials, physical sky (sun, moon, stars, clouds), ocean, and CC0 island assets.",
+	"Category": "Materials",
+	"CreatedBy": "",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EnabledByDefault": true,
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "BiomeSky",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		},
+		{
+			"Name": "BiomeOcean",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
